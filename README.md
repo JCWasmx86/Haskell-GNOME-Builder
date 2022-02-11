@@ -1,4 +1,4 @@
-# Plugin for GNOME Builder
+# Haskell Language Server Plugin for GNOME Builder
 
 Installation:
 
