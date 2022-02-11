@@ -2,12 +2,14 @@
 setupFile() {
 	if [ -n "$G_VERSION" ]; then
 		cat hls.plugin.in|sed s/XXXXX/$G_VERSION/g > hls.plugin
+		cat hls_stack.plugin.in|sed s/XXXXX/$G_VERSION/g > hls_stack.plugin
 	else
-		cat hls.plugin.in|sed s/XXXXX/42.0/g > hls.plugin
+		cat hls_stack.plugin.in|sed s/XXXXX/42.0/g > hls_stack.plugin
 	fi
 }
 installToLocal() {
 	cp hls.{py,plugin} ~/.local/share/gnome-builder/plugins
+	cp hls_stack.{py,plugin} ~/.local/share/gnome-builder/plugins
 }
 # The sed lines are from https://github.com/Prince781/vala-language-server/blob/master/plugins/gnome-builder/get_builder_abi.sh
 if ! command -v gnome-builder &> /dev/null; then

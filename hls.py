@@ -31,57 +31,57 @@ from gi.repository import Ide
 
 
 class HLSService(Ide.LspService):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.set_inherit_stderr(True)
-        self.set_search_path([os.path.expanduser("~/.ghcup/bin")])
-        self.set_program("haskell-language-server-wrapper")
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.set_inherit_stderr(True)
+		self.set_search_path([os.path.expanduser("~/.ghcup/bin")])
+		self.set_program("haskell-language-server-wrapper")
 
-    def do_configure_launcher(self, pipeline, launcher):
-        launcher.push_argv("--lsp")
-        launcher.push_argv("--debug")
-        launcher.push_argv("--logfile")
-        launcher.push_argv(os.path.expanduser("~/.cache") + "/hls.log")
-        launcher.setenv("PATH", os.path.expanduser("~/.ghcup/bin") + ":" + "/app/bin/:/usr/bin/" + os.getenv("PATH"), True);
+	def do_configure_launcher(self, pipeline, launcher):
+		launcher.push_argv("--lsp")
+		launcher.push_argv("--debug")
+		launcher.push_argv("--logfile")
+		launcher.push_argv(os.path.expanduser("~/.cache") + "/hls.log")
+		launcher.setenv("PATH", os.path.expanduser("~/.ghcup/bin") + ":" + "/app/bin/:/usr/bin/" + os.getenv("PATH"), True);
 
-    def do_configure_client(self, client):
-        client.add_language("haskell")
+	def do_configure_client(self, client):
+		client.add_language("haskell")
 
 
 class HLSDiagnosticProvider(Ide.LspDiagnosticProvider, Ide.DiagnosticProvider):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 
 class HLSCompletionProvider(Ide.LspCompletionProvider, Ide.CompletionProvider):
-    def do_load(self, context):
-        HLSService.bind_client(self)
+	def do_load(self, context):
+		HLSService.bind_client(self)
 
-    def do_get_priority(self, context):
-        return -1000
+	def do_get_priority(self, context):
+		return -1000
 
 class HLSSymbolResolver(Ide.LspSymbolResolver, Ide.SymbolResolver):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 
 class HLSHighlighter(Ide.LspHighlighter, Ide.Highlighter):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 
 class HLSFormatter(Ide.LspFormatter, Ide.Formatter):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 
 class HLSHoverProvider(Ide.LspHoverProvider, Ide.HoverProvider):
-    def do_prepare(self):
-        self.props.category = "Haskell Language Server"
-        self.props.priority = 200
-        HLSService.bind_client(self)
+	def do_prepare(self):
+		self.props.category = "Haskell Language Server"
+		self.props.priority = 200
+		HLSService.bind_client(self)
 
 class HLSRenameProvider(Ide.LspRenameProvider, Ide.RenameProvider):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 
 class HLSCodeActionProvider(Ide.LspCodeActionProvider, Ide.CodeActionProvider):
-    def do_load(self):
-        HLSService.bind_client(self)
+	def do_load(self):
+		HLSService.bind_client(self)
 

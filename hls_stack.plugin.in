@@ -1,0 +1,13 @@
+[Plugin]
+Authors=JCWasmx86 <JCWasmx86@t-online.de>
+Builtin=true
+Copyright=Copyright © 2022 JCWasmx86
+Description=Provides integration with the Stack build tool
+Depends=editor;buildui;
+Hidden=true
+Loader=python3
+Module=hls_stack
+Name=Maven
+X-Builder-ABI=XXXXX
+X-Project-File-Filter-Name=Stack
+X-Project-File-Filter-Pattern=stack.yaml
