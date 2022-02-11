@@ -5,3 +5,5 @@ Installation:
 ```
 ./install.sh
 ```
+
+This plugins assumes that `stack` is installed in `~/.ghcup/bin`.

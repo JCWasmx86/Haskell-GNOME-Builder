@@ -71,12 +71,12 @@ class StackPipelineAddin(Ide.Object, Ide.PipelineAddin):
 		project_file = build_system.props.project_file
 		project_dir = os.path.dirname(project_file.get_path())
 		config = pipeline.get_config()
-		builddir = pipeline.get_builddir()
+		build_dir = pipeline.get_builddir()
 		runtime = config.get_runtime()
-		srcdir = pipeline.get_srcdir()
+		src_dir = pipeline.get_srcdir()
 
 		build_launcher = pipeline.create_launcher()
-		build_launcher.set_cwd(srcdir)
+		build_launcher.set_cwd(src_dir)
 		new_path = os.path.expanduser("~/.ghcup/bin") + ":/app/bin/:/usr/bin/:" + os.getenv("PATH")
 		build_launcher.setenv("PATH", new_path, True)
 		build_launcher.push_argv(os.path.expanduser("~/.ghcup/bin/stack"))
@@ -84,7 +84,7 @@ class StackPipelineAddin(Ide.Object, Ide.PipelineAddin):
 
 		clean_launcher = pipeline.create_launcher()
 		clean_launcher.setenv("PATH", new_path, True)
-		clean_launcher.set_cwd(srcdir)
+		clean_launcher.set_cwd(src_dir)
 		clean_launcher.push_argv(os.path.expanduser("~/.ghcup/bin/stack"))
 		clean_launcher.push_argv("clean")
 
