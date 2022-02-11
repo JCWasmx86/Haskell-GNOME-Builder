@@ -84,4 +84,3 @@ class HLSRenameProvider(Ide.LspRenameProvider, Ide.RenameProvider):
 class HLSCodeActionProvider(Ide.LspCodeActionProvider, Ide.CodeActionProvider):
 	def do_load(self):
 		HLSService.bind_client(self)
-
