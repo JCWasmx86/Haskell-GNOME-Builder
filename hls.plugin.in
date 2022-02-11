@@ -1,0 +1,14 @@
+[Plugin]
+Name=Haskell Language Server
+Loader=python3
+Module=hls
+Author=JCWasmx86
+X-Builder-ABI=XXXXX
+X-Code-Action-Languages=haskell
+X-Completion-Provider-Languages=haskell
+X-Diagnostic-Provider-Languages=haskell
+X-Formatter-Languages=haskell
+X-Highlighter-Languages=haskell
+X-Hover-Provider-Languages=haskell
+X-Rename-Provider-Languages=haskell
+X-Symbol-Resolver-Languages=haskell
