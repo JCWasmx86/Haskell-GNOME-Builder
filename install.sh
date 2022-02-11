@@ -6,10 +6,6 @@ setupFile() {
 		cat hls.plugin.in|sed s/XXXXX/42.0/g > hls.plugin
 	fi
 }
-installToFlatpak() {
-	echo After each upgrade you have to rerun this install script
-	cp hls.{py,plugin} $(flatpak info org.gnome.Builder --show-location)/files/lib/gnome-builder/plugins/
-}
 installToLocal() {
 	cp hls.{py,plugin} ~/.local/share/gnome-builder/plugins
 }
@@ -20,7 +16,7 @@ if ! command -v gnome-builder &> /dev/null; then
 		echo Found GNOME Builder as a flatpak
 		export G_VERSION=$(flatpak run org.gnome.Builder --version | sed -nr '/GNOME Builder/ { s/GNOME Builder ([[:digit:]]+\.[[:digit:]]+).*$/\1/ p }')
 		setupFile
-		installToFlatpak
+		installToLocal
 	else
 		echo GNOME-Builder is not installed
 		exit 1
